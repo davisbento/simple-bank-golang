@@ -4,6 +4,8 @@ import (
 	"math/rand"
 	"strings"
 	"time"
+
+	"github.com/goombaio/namegenerator"
 )
 
 const alphabet string = "abcdefghijklmnopqrstuvwxyz"
@@ -30,7 +32,10 @@ func RandomString(n int) string {
 }
 
 func RandomOwner() string {
-	return RandomString(6)
+	seed := time.Now().UTC().UnixNano()
+	nameGenerator := namegenerator.NewNameGenerator(seed)
+
+	return nameGenerator.Generate()
 }
 
 func RandomBalance() int64 {
