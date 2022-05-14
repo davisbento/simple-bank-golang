@@ -98,7 +98,7 @@ func (server *Server) loginUser(ctx *gin.Context) {
 	user, err := server.store.GetUser(ctx, req.Username)
 	if err != nil {
 		if err == sql.ErrNoRows {
-			ctx.JSON(http.StatusNotFound, errorResponse(err))
+			ctx.JSON(http.StatusNotFound, errorResponseString("No data found"))
 			return
 		}
 		ctx.JSON(http.StatusInternalServerError, errorResponse(err))
